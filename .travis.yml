@@ -1,0 +1,19 @@
+nguage: node_js
+node_js:
+  - "node"
+
+after_script:
+  - gitbook build
+  - cd ./_book
+  - git init
+  - git config user.name "annanannan"
+  - git config user.email "1406571075@qq.com"
+  - git config --unset http.proxy 
+  - git config --unset https.proxy
+  - git add .
+  - git commit -m "publish gitbook"
+  - git push --force --quiet "https://${ACC_TOKEN}@${GH_REF}" master:${BRANCH}
+
+branches:
+  only:
+    - master
